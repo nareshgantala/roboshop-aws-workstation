@@ -9,4 +9,5 @@ module "ec2" {
   subnet_id = module.network.subnet_id
   instance_name = each.key
   instance_type = each.value
+  sg_id = module.network.sg_id
 }
