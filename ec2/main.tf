@@ -4,7 +4,7 @@ resource "aws_instance" "main" {
   subnet_id     = var.subnet_id
   key_name = "roboshop_pem"
   associate_public_ip_address = true
-  vpc_security_group_ids = var.sg_id
+  vpc_security_group_ids = [var.sg_id]
 
 
   tags = {
