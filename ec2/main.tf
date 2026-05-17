@@ -5,6 +5,7 @@ resource "aws_instance" "main" {
   key_name = "roboshop_pem"
   associate_public_ip_address = true
   vpc_security_group_ids = [var.sg_id]
+  iam_instance_profile = var.profile
 
 
   tags = {

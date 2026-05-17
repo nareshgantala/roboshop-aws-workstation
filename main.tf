@@ -3,6 +3,10 @@ module "network" {
   vpc_id = var.vpc_id
 }
 
+module "iam" {
+  source = "./iam"
+}
+
 module "ec2" {
   for_each = var.instance_name
   source = "./ec2"
@@ -10,4 +14,5 @@ module "ec2" {
   instance_name = each.key
   instance_type = each.value
   sg_id = module.network.sg_id
+  profile = module.iam.profile
 }
