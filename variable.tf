@@ -1,0 +1,10 @@
+variable "vpc_id" {
+  default = "vpc-003e2f478e6a9ca59"
+}
+
+variable "instance_name" {
+  default = {
+    workstation = "t2.micro"
+    jenkins = "t2.micro"
+  }
+}
