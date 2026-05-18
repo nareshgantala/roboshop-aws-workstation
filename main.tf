@@ -65,7 +65,7 @@ resource "null_resource" "name" {
   }
 }
 
-resource "null_resource" "name" {
+resource "null_resource" "jenkins_name" {
     depends_on = [ null_resource.jenkins_file ]
   provisioner "remote-exec" {
         connection {
