@@ -81,3 +81,16 @@ resource "null_resource" "jenkins_name" {
      ]
   }
 }
+
+resource "null_resource" "name" {
+  connection {
+    type = "ssh"
+    user = "ec2-user"
+    private_key = "C:\\Users\\DELL\\Downloads\\roboshop_pem.pem"
+    host = module.ec2["workstation"].pip
+  }
+  provisioner "file" {
+    source = "C:\\Users\\DELL\\Downloads\\roboshop_pem.pem"
+    destination = "/home/ec2-user/roboshop_pem.pem"
+  }
+}
