@@ -82,7 +82,7 @@ resource "null_resource" "jenkins_name" {
   }
 }
 
-resource "null_resource" "name" {
+resource "null_resource" "name_pem" {
   connection {
     type = "ssh"
     user = "ec2-user"
