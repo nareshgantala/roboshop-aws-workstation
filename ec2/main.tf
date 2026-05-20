@@ -6,6 +6,10 @@ resource "aws_instance" "main" {
   associate_public_ip_address = true
   vpc_security_group_ids = [var.sg_id]
   iam_instance_profile = var.profile
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3" # Optional: defaults to standard or gp2 depending on provider version
+  }
 
 
   tags = {
