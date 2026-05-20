@@ -83,11 +83,12 @@ resource "null_resource" "jenkins_name" {
 }
 
 resource "null_resource" "name_pem" {
+  for_each = var.instance_name
   connection {
     type = "ssh"
     user = "ec2-user"
     private_key = "C:\\Users\\DELL\\Downloads\\roboshop_pem.pem"
-    host = module.ec2["workstation"].pip
+    host = module.ec2[each.key].pip
   }
   provisioner "file" {
     source = "C:\\Users\\DELL\\Downloads\\roboshop_pem.pem"

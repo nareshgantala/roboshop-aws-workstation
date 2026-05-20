@@ -15,10 +15,13 @@ echo "Install Jenkins"
 # Combined into one line to fix the wget download issue
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
 
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
+sudo yum upgrade
+
 # Import the required GPG key so the package manager trusts the repository
 sudo rpm --import https://pkg.jenkins.io/rpm-stable/jenkins.io-2023.key
 
-sudo yum upgrade -y
+
 
 # Add required dependencies for the jenkins package
 sudo yum install fontconfig java-21-openjdk -y
