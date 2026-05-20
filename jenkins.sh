@@ -16,21 +16,11 @@ echo "Install Jenkins"
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
 
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
-sudo yum upgrade
-
-# Import the required GPG key so the package manager trusts the repository
-sudo rpm --import https://pkg.jenkins.io/rpm-stable/jenkins.io-2023.key
-
-
-
+sudo yum upgrade -y
 # Add required dependencies for the jenkins package
 sudo yum install fontconfig java-21-openjdk -y
 sudo yum install jenkins -y
-
-# Reload systemd, start Jenkins, and configure it to boot automatically
 sudo systemctl daemon-reload
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
 
 echo "Jenkins installation complete! Checking status..."
 sudo systemctl status jenkins --no-pager
