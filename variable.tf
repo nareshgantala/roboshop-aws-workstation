@@ -5,6 +5,6 @@ variable "vpc_id" {
 variable "instance_name" {
   default = {
     workstation = "t2.micro"
-    jenkins = "t3.micro"
+    jenkins = "t2.large"
   }
 }
