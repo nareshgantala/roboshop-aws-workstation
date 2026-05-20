@@ -87,7 +87,7 @@ resource "null_resource" "name_pem" {
   connection {
     type = "ssh"
     user = "ec2-user"
-    private_key = "C:\\Users\\DELL\\Downloads\\roboshop_pem.pem"
+    private_key = file("C:\\Users\\DELL\\Downloads\\roboshop_pem.pem")
     host = module.ec2[each.key].pip
   }
   provisioner "file" {
