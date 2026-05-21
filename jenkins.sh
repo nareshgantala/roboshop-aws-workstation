@@ -12,15 +12,31 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 sudo yum -y install terraform
 
 echo "Install Jenkins"
-# Combined into one line to fix the wget download issue
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
+
+sudo dnf install -y wget
 
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
+
+# 1. Import the official Jenkins GPG key so your system trusts the repository
+sudo rpm --import https://pkg.jenkins.io/rpm-stable/jenkins.io-2023.key
+
+# 2. Download the repo file safely
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/rpm-stable/jenkins.repo
+
+# 3. FORCE DNF to clear its old cache and read the new Jenkins repo
+# sudo dnf clean all 
+# sudo dnf makecache
+
 sudo yum upgrade -y
-# Add required dependencies for the jenkins package
-sudo yum install fontconfig java-21-openjdk -y
-sudo yum install jenkins -y
+
+# 4. Install Java dependencies (Jenkins requires Java)
+sudo dnf install fontconfig java-21-openjdk -y
+
+# 5. Install, start, and enable Jenkins
+sudo dnf install jenkins -y
 sudo systemctl daemon-reload
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
 
 echo "Jenkins installation complete! Checking status..."
 sudo systemctl status jenkins --no-pager
