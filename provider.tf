@@ -1,8 +1,10 @@
 terraform {
     backend "s3" {
     bucket = "roboshop-aws-terraform"
-    key    = "infra/terraform.tfstate"
+    key    = "workstation/terraform.tfstate"
     region = "us-east-1"
+
+    
   }
 
   required_providers {
